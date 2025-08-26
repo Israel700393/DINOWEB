@@ -87,6 +87,24 @@ footer{margin-top:28px;padding:18px;text-align:center;color:var(--muted)}
   transform: translateY(0) scale(0.98);
   box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
+:root{
+  --bg:#F7FBF9; --accent:#6AA84F; --accent2:#8FB339; --card:#FFFFFF; --muted:#6b6b6b;
+  --radius:14px;
+  --text:#083318;
+}
+[data-theme="dark"]{
+  --bg:#0D1B12;
+  --accent:#8FB339;
+  --accent2:#6AA84F;
+  --card:#1A2B1A;
+  --muted:#b0b0b0;
+  --text:#E6FFE6;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+}
+.card{background:var(--card);}
 </style>
 </head>
 <body>
@@ -99,7 +117,9 @@ footer{margin-top:28px;padding:18px;text-align:center;color:var(--muted)}
     <button id="startTour">Iniciar Tour</button>
   </div>
 </div>
-
+<div style="margin-left:auto;">
+  <button id="themeToggle" class="play-btn">🌙 Dark Mode</button>
+</div>
 </header>
 
 <main>
@@ -420,6 +440,17 @@ document.getElementById('startTour').addEventListener('click',()=>{
     document.getElementById('carousel').scrollIntoView({behavior:'smooth'});
     setTimeout(()=>{document.querySelector('.thumb')?.click()},800);
   },800);
+});
+// --- Theme toggle ---
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+  if(document.documentElement.dataset.theme === 'dark'){
+    document.documentElement.dataset.theme = 'light';
+    themeToggle.innerText = '🌙 Dark Mode';
+  } else {
+    document.documentElement.dataset.theme = 'dark';
+    themeToggle.innerText = '☀️ Light Mode';
+  }
 });
 </script>
 </body>
